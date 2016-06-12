@@ -24,3 +24,4 @@ build.sbt
 .cache-tests
 .classpath
 .settings/*
+.idea
