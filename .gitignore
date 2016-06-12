@@ -18,7 +18,8 @@ project/plugins/project/
 .worksheet
 
 # Other
-build.sbt
+*.sbt
+*.iml
 .project
 .cache-main
 .cache-tests
