@@ -18,7 +18,9 @@ project/plugins/project/
 .worksheet
 
 # Other
-.sbt
+build.sbt
 .project
 .cache-main
-.cache-tets
+.cache-tests
+.classpath
+.settings/*
