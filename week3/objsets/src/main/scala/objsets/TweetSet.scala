@@ -78,7 +78,13 @@ abstract class TweetSet {
    * Question: Should we implment this method here, or should it remain abstract
    * and be implemented in the subclasses?
    */
-  def descendingByRetweet: TweetList = ???
+  def descendingByRetweet: TweetList = {
+    val most = mostRetweeted
+    val tail = remove(most)
+
+    if (!tail.isEmpty) new Cons(mostRetweeted, tail.descendingByRetweet)
+    else new Cons(mostRetweeted, Nil)
+  }
   
   /**
    * The following methods are already implemented
@@ -113,7 +119,7 @@ class Empty extends TweetSet {
 
   def union(that: TweetSet): TweetSet = that
 
-  def mostRetweeted: Tweet = null
+  def mostRetweeted: Tweet = throw new NoSuchElementException("No most retweeted on Empty.")
 
   def isEmpty = true
 
@@ -154,7 +160,7 @@ class NonEmpty(elem: Tweet, left: TweetSet, right: TweetSet) extends TweetSet {
     if (left.isEmpty && right.isEmpty) elem
     else if (right.isEmpty) max(left.mostRetweeted, elem)
     else if (left.isEmpty) max(right.mostRetweeted, elem)
-    else max(left.mostRetweeted ,max(left.mostRetweeted, elem))
+    else max(left.mostRetweeted, max(left.mostRetweeted, elem))
   }
 
   /**
